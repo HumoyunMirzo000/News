@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content%}
+<main class="container mt-3 mb-5">
+	{% for news in all_news %}
+	<div class="card mb-4 shadow">
+	  <div class="row no-gutters">
+	    <div class="col-md-3">
+	      <img src="/media/{{news.image}}" class="card-img" alt="{{news.title}}">
+	    </div>
+	    <div class="col-md-8">
+	      <div class="card-body">
+	        <h5 class="card-title">{{news.title}}</h5>
+	        <p class="card-text">{{news.detail}}</p>
+	        <div class="d-flex justify-content-start mt-2">
+  <a href="{% url 'detail' news.id %}" class="btn btn-sm btn-info shadow-sm mx-2">Read Full</a>
+  <a href="{% url 'delete_post' news.pk %}" class="btn btn-sm btn-danger shadow-sm mx-2">DELETE</a>
+  <a href="{% url 'edit_post' news.pk %}" class="btn btn-sm btn-warning shadow-sm mx-2">UPDATE</a>
+</div>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endfor %}
+</main>
+{% endblock%}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content%}
+<main class="container mt-3 mb-5">
+	<!-- featured news -->
+	<div class="row my-3">
+		<!-- Left -->
+		<div class="col-md-8">
+			<div class="card mb-3">
+                 <img src="/media/{{news.image}}" class="card-img-top" alt="{{news.title}}">
+			  <div class="card-body">
+			    <h5 class="card-title">{{news.title}}</h5>
+			    <hr/>
+			    <p class="card-text">{{news.text}}</p>
+			  </div>
+			</div>
+			<ul class="d-flex list-unstyled gap-3 mt-2">
+  <li><a href="{% url 'edit_post' news.pk %}" class="btn btn-sm btn-warning">MAKE CHANGES</a></li>
+  <li><a href="{% url 'delete_post' news.pk %}" class="btn btn-sm btn-danger">DELETE</a></li>
+</ul>
+
+		</div>
+		<div class="col-md-4">
+			<h3 class="mb-3 border-bottom pb-1">From this Category</h3>
+			<!-- Category Box -->
+            {% for news in rel_news %}
+			<div class="card mb-3 shadow">
+			    <img src="/media/{{news.image}}" class="card-img-top" alt="{{news.title}}">
+			  <div class="card-body">
+			    <h5 class="card-title">{{news.title}}</h5>
+			    <hr/>
+			    <div class="d-flex gap-2 mt-2">
+  <a href="/detail/{{news.id}}" class="btn btn-sm btn-primary mx-2">Read Full</a>
+  <a href="/edit-post/{{news.id}}" class="btn btn-sm btn-warning mx-2">UPDATE</a>
+  <a href="/delete-post/{{news.id}}" class="btn btn-sm btn-danger mx-2">DELETE</a>
+</div>
+
+		{% endfor %}
+		</div>
+	</div>
+
+</main>
+{% endblock%}
