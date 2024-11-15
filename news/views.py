@@ -21,7 +21,6 @@ def all_news(request):
         'all_news': all_news
     })
 
-
 def detail(request, id):
     news = New.objects.get(id=id)
     category = Category.objects.get(id=news.category.id)
